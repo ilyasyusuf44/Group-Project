@@ -10,7 +10,7 @@ void pushitem(PNODE* stack, char* newstring)
 	new_node = (PNODE)malloc(sizeof(NODE));
 	if (!new_node)
 	{
-		fprintf(stderr, "error\n");
+		fprintf(stderr, "error allocating memory\n");
 		exit(1);  
 	}
 	//the information of the current node is set to user input

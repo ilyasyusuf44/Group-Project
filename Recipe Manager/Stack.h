@@ -2,7 +2,6 @@
 
 typedef struct node {
 
-	int recipeindex; 
 	char* string;
 	struct node* next;
 
