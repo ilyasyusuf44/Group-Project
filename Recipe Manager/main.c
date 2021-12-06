@@ -7,15 +7,17 @@
 int main()
 {
 
-	PNODE stack = NULL;
+	PNODE stack = NULL; 
 	char* RecipeName = 0;
+	//function returns users inputted name
 	RecipeName = getstring(RecipeName); 
-	printf("%s", RecipeName); 
 
+	pushitem(&stack, RecipeName);	
+	popitem(&stack, RecipeName); 
+	displaystack(stack); 
 
+	free(RecipeName);
 
-
-	free(RecipeName);  
 	return 0;
 }
 

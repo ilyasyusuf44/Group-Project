@@ -3,6 +3,7 @@
 #define MAXNAMELENGTH 50 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //function gets the name of the recipe
 char* getstring()
@@ -13,10 +14,11 @@ char* getstring()
 	//allocation of memory to string that holds the recipe name
 	char* allocatedstring = 0;
 	allocatedstring = (char*)malloc(MAXNAMELENGTH);
-
+	
 	//checks of allocation was successful
 	if (allocatedstring)
 	{
+		memset(allocatedstring, 0, MAXNAMELENGTH); 
 		if (scanf("%s", allocatedstring) != 1)
 		{
 			fprintf(stderr, "invalid input!\n");

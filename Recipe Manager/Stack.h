@@ -8,5 +8,5 @@ typedef struct node {
 }NODE, * PNODE;
 
 void pushitem(PNODE*, char*);
-void popitem(PNODE*);
+void popitem(PNODE*, char*);
 void displaystack(PNODE);

@@ -1,13 +1,15 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
+#define MAXNAMELENGTH 50 
 #include<stdio.h>
 #include<stdlib.h>
 #include "Stack.h"
+#include <string.h>
 void pushitem(PNODE* stack, char* newstring)
 {
 	//allocates memory to node
 	PNODE new_node = NULL;
-	new_node = (PNODE)malloc(sizeof(NODE));
+	new_node = (PNODE)malloc((sizeof(NODE) + MAXNAMELENGTH));
 	if (!new_node)
 	{
 		fprintf(stderr, "error allocating memory\n");
@@ -22,29 +24,33 @@ void pushitem(PNODE* stack, char* newstring)
 		//the stack becomes the current node
 		*stack = new_node;
 	}
+	
 }
 
 
 //Function removes item from top of stack
-void popitem(PNODE* stack)
+void popitem(PNODE* stack, char* name)
 {
 
-	PNODE new_node = NULL;
+	PNODE current = *stack;
+	
 	//checks to see if stack is empty, only pops items when stack is populated
-	if (!*stack)
+	if (current->string != name)
 	{
-		fprintf(stderr, "empty stack!\n");
-		exit(1);
+		fprintf(stderr, "not in stack!\n");
+		//exit(1);
 	}
-	else if (*stack)
+	
+	else if (current->string == name)
 	{
 		//the current node becomes the whole stack
-		new_node = *stack;
+		//new_node = *stack;
 		//the whole stack becomes the portion after the current node 
 		*stack = (*stack)->next;
 		//the current node is removed from memory
-		free(new_node);
+		free(current->string); 
 	}
+	
 }
 
 
@@ -57,13 +63,13 @@ void displaystack(PNODE stack)
 	{
 		//could be wrong?
 		fprintf(stderr, "empty stack!\n");
-		exit(1);
+		//exit(1);
 	}
 	else if (current)
 	{
 		do
 		{
-			printf("%s ", current->string);
+			printf("%s in stack\n", current->string);
 			current = current->next;
 
 		} while (current != NULL);
