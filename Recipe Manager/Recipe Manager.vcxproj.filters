@@ -24,12 +24,18 @@
     <ClCompile Include="Getnames.c">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Recipe Manager Functions.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Getnames.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Recipe Manager Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

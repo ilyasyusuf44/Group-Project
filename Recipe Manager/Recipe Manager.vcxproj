@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Getnames.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="Recipe Manager Functions.c" />
     <ClCompile Include="Stack.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Getnames.h" />
+    <ClInclude Include="Recipe Manager Functions.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
