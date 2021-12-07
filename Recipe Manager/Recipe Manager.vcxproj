@@ -140,12 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Getnames.c" />
+    <ClCompile Include="ITEM.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="NODE.c" />
     <ClCompile Include="Recipe Manager Functions.c" />
     <ClCompile Include="Stack.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Getnames.h" />
+    <ClInclude Include="ITEM.h" />
+    <ClInclude Include="NODE.h" />
     <ClInclude Include="Recipe Manager Functions.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>

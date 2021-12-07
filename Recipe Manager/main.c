@@ -29,6 +29,7 @@ int main()
 			pushitem(&stack, RecipeName);
 			break;
 		case 3: // remove recipe
+			//needs to use close of name to not lose it
 			popitem(&stack, RecipeName);
 			break;
 		case 4://display recipes (this is for testing purposes to check the stack, this will be replaced with the proper version later)

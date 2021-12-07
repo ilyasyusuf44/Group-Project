@@ -27,6 +27,12 @@
     <ClCompile Include="Recipe Manager Functions.c">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="ITEM.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NODE.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -36,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Recipe Manager Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NODE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
