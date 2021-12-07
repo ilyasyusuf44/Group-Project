@@ -18,11 +18,15 @@ void pushitem(PNODE* stack, char* newstring)
 	//the information of the current node is set to user input
 	else if (new_node)
 	{
-		new_node->string = newstring;
-		//new_node-next points to the previous node 
-		new_node->next = *stack;
-		//the stack becomes the current node
-		*stack = new_node;
+		if (newstring)
+		{
+			new_node->string = newstring;
+			//new_node-next points to the previous node 
+			new_node->next = *stack;
+			//the stack becomes the current node
+			*stack = new_node;
+			printf("recipe has been added\n\n");
+		}
 	}
 	
 }
@@ -35,22 +39,29 @@ void popitem(PNODE* stack, char* name)
 	PNODE current = *stack;
 	
 	//checks to see if stack is empty, only pops items when stack is populated
-	if (current->string != name)
+	if (current)
 	{
-		fprintf(stderr, "not in stack!\n");
-		//exit(1);
+		if (current->string != name)
+		{
+			fprintf(stderr, "not in stack!\n");
+			//exit(1);
+		}
+
+		else if (current->string == name)
+		{
+			//the current node becomes the whole stack
+			//new_node = *stack;
+			//the whole stack becomes the portion after the current node 
+			*stack = (*stack)->next;
+			//the current node is removed from memory
+			free(current->string);
+			printf("recipe has been removed\n\n");
+		}
 	}
-	
-	else if (current->string == name)
+	else
 	{
-		//the current node becomes the whole stack
-		//new_node = *stack;
-		//the whole stack becomes the portion after the current node 
-		*stack = (*stack)->next;
-		//the current node is removed from memory
-		free(current->string); 
+		fprintf(stderr, "empty stack!\n"); 
 	}
-	
 }
 
 
