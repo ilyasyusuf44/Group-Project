@@ -1,90 +1,122 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #define MAXNAMELENGTH 50 
+
+#include "Stack.h"
+#include "NODE.h"
+#include "ITEM.h"
 #include<stdio.h>
 #include<stdlib.h>
-#include "Stack.h"
 #include <string.h>
-void pushitem(PNODE* stack, char* newstring)
+
+
+LIST CreateList()
 {
-	//allocates memory to node
-	PNODE new_node = NULL;
-	new_node = (PNODE)malloc((sizeof(NODE) + MAXNAMELENGTH));
-	if (!new_node)
-	{
-		fprintf(stderr, "error allocating memory\n");
-		exit(1);  
-	}
-	//the information of the current node is set to user input
-	else if (new_node)
-	{
-		if (newstring)
-		{
-			new_node->string = newstring;
-			//new_node-next points to the previous node 
-			new_node->next = *stack;
-			//the stack becomes the current node
-			*stack = new_node;
-			printf("recipe has been added\n\n");
-		}
-	}
-	
+	LIST newlist = { 0 };
+	return newlist;
 }
-
-
-//Function removes item from top of stack
-void popitem(PNODE* stack, char* name)
+//function adds item to top of stack
+void pushitem(PLIST thisList, ITEM thisItem )
 {
+	PNODE newNode = CreateNode(thisItem);
 
-	PNODE current = *stack;
-	
-	//checks to see if stack is empty, only pops items when stack is populated
-	if (current)
+	if (thisList->list == NULL)  //empty list.  
 	{
-		if (current->string != name)
-		{
-			fprintf(stderr, "not in stack!\n");
-			//exit(1);
-		}
-
-		else if (current->string == name)
-		{
-			//the current node becomes the whole stack
-			//new_node = *stack;
-			//the whole stack becomes the portion after the current node 
-			*stack = (*stack)->next;
-			//the current node is removed from memory
-			free(current->string);
-			printf("recipe has been removed\n\n");
-		}
+		ReplaceNextNode(newNode, thisList->list); 
+		thisList->list = newNode; 
+		
 	}
 	else
 	{
-		fprintf(stderr, "empty stack!\n"); 
+		PNODE current = thisList->list;
+
+		while (GetNextNode(current) != NULL)
+		{
+			current = GetNextNode(current);
+		}
+		ReplaceNextNode(current, newNode); 
 	}
 }
 
-
-//Function displays stack from top to bottom of stack
-void displaystack(PNODE stack)
+//Function removes item from top of stack
+void popitem(PLIST thisList, ITEM itemToBeDeleted) 
 {
 
-	PNODE current = stack;
-	if (!current)
-	{
-		//could be wrong?
-		fprintf(stderr, "empty stack!\n");
-		//exit(1);
+	PNODE current = thisList->list;
+	if(current)
+	{ 
+		if (CompareItems(current->nodedata, itemToBeDeleted))
+		{
+			if (GetNextNode(current) != NULL)  
+				thisList->list = GetNextNode(current);
+			else  
+				thisList->list = NULL;
+
+			DisposeNode(current);
+			return;
+		}
 	}
-	else if (current)
+	PNODE prev = NULL; 
+	while (current != NULL && !CompareItems(current->nodedata, itemToBeDeleted))
+	{
+		prev = current;
+		current = GetNextNode(current);
+	}
+
+	if (current == NULL)
+		return; 
+
+	ReplaceNextNode(prev, GetNextNode(current));  //unlink the node from the list  
+
+	DisposeNode(current);  // Free memory 
+
+}
+
+//ignore this function for now, im not done making this yet
+/*
+void searchstack(PLIST thisList, ITEM searchitem)
+{
+	PNODE current = thisList->list;
+	if (current)
 	{
 		do
 		{
-			printf("%s in stack\n", current->string);
-			current = current->next;
-
+			if (CompareItems(current->nodedata, searchitem)) 
+			{
+				break;
+			}
+			current = GetNextNode(current);
 		} while (current != NULL);
-		printf("\n");
 	}
+}
+*/
 
+//function displays stack
+void displaystack(LIST thisList)
+{
+	if (thisList.list == NULL)
+		return;
+	else
+	{
+		PNODE current = thisList.list;
+		do
+		{
+			DisplayItem(current->nodedata);
+			current = GetNextNode(current);
+		} while (current != NULL);
+	}
+}
+
+//function empties stack
+void disposestack(PLIST thisList)
+{
+	PNODE tmp;
+
+	PNODE current = thisList->list;
+	while (current != NULL)
+	{
+		tmp = current;
+		current = GetNextNode(current);
+		DisposeNode(tmp);
+	}
 }

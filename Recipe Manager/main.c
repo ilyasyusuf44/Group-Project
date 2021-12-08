@@ -2,70 +2,81 @@
 #include <stdlib.h>
 #include<stdbool.h>
 #include "Stack.h"
+#include "NODE.h"
+#include "ITEM.h"
 #include "Getnames.h"
 #include "Recipe Manager Functions.h"
+
 #define _CRT_SECURE_NO_WARNINGS
 
 int main()
 {
-
-	PNODE stack = NULL; 
-	char* RecipeName = 0;
-	int menuchoice = 0;
+	int menuchoice = 0; 
 	bool continueprogram = true; 
-	//function returns users inputted name
-	RecipeName = getstring(RecipeName);
-	
+	RECIPE recipe = { 0 };
+	ITEM listitem = { 0 };
+	recipe = createrecipe();  
+	listitem = CreateItem(recipe); 
+	DisplayItem(listitem);
+
+	//stack is last in first out btw
+	LIST recipelist = CreateList(); 
+
 	while (continueprogram)
 	{
 		printmenu();
 		menuchoice = getmenuchoice(); 
+
+		//feel free to add other cases if you need to
 		switch (menuchoice)
 		{
-		case 1: //change name or input name if popped
-			RecipeName = getstring(RecipeName);
-			break;
-		case 2://add recipe
-			pushitem(&stack, RecipeName);
-			break;
-		case 3: // remove recipe
-			//needs to use close of name to not lose it
-			popitem(&stack, RecipeName);
-			break;
-		case 4://display recipes (this is for testing purposes to check the stack, this will be replaced with the proper version later)
-			displaystack(stack);
-			break;
-		case 5://search for recipe
-			//return 0;
-			break;
-		case 6://quit
-			if (stack) 
-			{
-				free(RecipeName); 
-				continueprogram = false;
-			}
-			else
-			{
-				continueprogram = false; 
-			}
+		case 1: //change item information
 
+			//printf("option %d\n", menuchoice);
+			recipe = changestring(recipe); 
+			printf("\n");
+			DisplayItem(listitem); 
 			break;
-		default://jumps out if input is invalid 
-			//fprintf(stderr, "invalid!\n\n");
-			if (stack)
-			{
-				free(RecipeName);
-				continueprogram = false;
-			}
-			else
-			{
-				continueprogram = false; 
-			}
-			
+
+		case 2://add recipe to stack
+
+			printf("option %d\n\n", menuchoice);
+			pushitem(&recipelist, listitem);
+			pushitem(&recipelist, listitem);
+			break;
+
+		case 3: // remove recipe from stack
+
+			printf("option %d\n\n", menuchoice);
+			//for now this only removes from the top of the stack because the stack never goes beyond 1 item for now.
+			popitem(&recipelist, listitem); 
+			break;
+
+		case 4://display recipes (this is for testing purposes to check the stack, replace this with your version)
+
+			printf("option %d\n\n", menuchoice);
+			displaystack(recipelist); 
+			break;
+
+		case 5://search for recipe, this does not work yet so ignore it
+
+			printf("option %d\n\n", menuchoice);
+			break;
+
+		case 6://exit the loop
+
+			printf("option %d\n\n", menuchoice);
+			continueprogram = false;
+			break;
+
+		default://jumps out of loop if input is invalid 
+
+			continueprogram = false;
 			break;
 		}
-
 	}
+	//emptys the stack
+	disposestack(&recipelist); 
 	return 0;
 }
 

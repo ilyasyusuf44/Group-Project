@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ITEM.h"
 
 //function gets the name of the recipe
 char* getstring()
 {
 	//Prompts user to input a string
-	printf("enter a name\n");
+	//printf("enter input\n\n");
 
 	//allocation of memory to string that holds the recipe name
 	char* allocatedstring = 0;
@@ -19,11 +20,15 @@ char* getstring()
 	if (allocatedstring)
 	{
 		memset(allocatedstring, 0, MAXNAMELENGTH); 
-		if (scanf("%s", allocatedstring) != 1)
+		fgets(allocatedstring, MAXNAMELENGTH, stdin);
+		//printf("\n");
+		/*
+		if (scanf("%[^\n]", allocatedstring) != 1)
 		{
 			fprintf(stderr, "invalid input!\n");
 			exit(1);
-		}	
+		}
+		*/
 	}
 	else if (allocatedstring)
 	{
@@ -32,3 +37,4 @@ char* getstring()
 	}
 	return allocatedstring;
 }
+
