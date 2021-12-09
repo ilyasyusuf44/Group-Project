@@ -44,7 +44,7 @@ RECIPE createrecipe()
 	printf("Enter cooking times\n");
 	newrecipe.cookingtimes = getstring();
 	printf("Enter temperatures\n");
-	newrecipe.temparutures = getstring();
+	newrecipe.temperatures = getstring();
 	printf("Enter instructions\n");
 	newrecipe.instructions = getstring();
 	
@@ -67,7 +67,7 @@ RECIPE changestring(RECIPE recipetobechanged)
 	printf("Enter cooking times\n");
 	fgets(recipetobechanged.cookingtimes, MAXNAMELENGTH, stdin);
 	printf("Enter temperatures\n");
-	fgets(recipetobechanged.temparutures, MAXNAMELENGTH, stdin);
+	fgets(recipetobechanged.temperatures, MAXNAMELENGTH, stdin);
 	printf("Enter instructions\n");
 	fgets(recipetobechanged.instructions, MAXNAMELENGTH, stdin);
 

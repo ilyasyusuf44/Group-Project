@@ -77,6 +77,10 @@ int main()
 	}
 	//emptys the stack
 	disposestack(&recipelist); 
+
+
+
+
 	return 0;
 }
 

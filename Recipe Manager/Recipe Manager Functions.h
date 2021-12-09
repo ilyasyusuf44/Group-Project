@@ -6,7 +6,7 @@ typedef struct recipe {
 	char* ingredients;
 	char* utensils;
 	char* cookingtimes;
-	char* temparutures;
+	char* temperatures;
 	char* instructions;
 
 }RECIPE;

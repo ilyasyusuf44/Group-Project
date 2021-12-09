@@ -36,7 +36,7 @@ void DisplayItem(ITEM item)
 	printf("item data: %s\n", item.recipe.ingredients);
 	printf("item data: %s\n", item.recipe.utensils);
 	printf("item data: %s\n", item.recipe.cookingtimes);
-	printf("item data: %s\n", item.recipe.temparutures);
+	printf("item data: %s\n", item.recipe.temperatures);
 	printf("item data: %s\n", item.recipe.instructions);
 }
 
@@ -48,7 +48,7 @@ void DisposeItem(ITEM item)
 	free(item.recipe.ingredients);
 	free(item.recipe.utensils);
 	free(item.recipe.cookingtimes); 
-	free(item.recipe.temparutures);
+	free(item.recipe.temperatures);
 	free(item.recipe.instructions); 	
 
 }
